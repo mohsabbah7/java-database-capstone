@@ -2,102 +2,132 @@
 
 ## 👤 Admin User Stories
 
-**1. Manage Doctor Accounts**
-As an admin, I want to add, update, and remove doctor profiles, so that I can keep the clinic's doctor directory accurate and up to date.
+**1. Log Into the Portal**
+As an admin, I want to log into the portal with my username and password, so that I can manage the platform securely.
 - Acceptance Criteria:
-  - Admin can create a new doctor account with name, specialization, and contact details.
-  - Admin can edit or deactivate an existing doctor profile.
-  - Deactivated doctors no longer appear in patient-facing booking screens.
+  - Admin can log in with valid username and password.
+  - Invalid credentials show an appropriate error message.
+  - Successful login redirects to the admin dashboard.
+- Priority: High
 
-**2. View All Appointments**
-As an admin, I want to view all appointments across the clinic, so that I can monitor scheduling and identify conflicts or gaps.
+**2. Log Out of the Portal**
+As an admin, I want to log out of the portal, so that I can protect system access.
 - Acceptance Criteria:
-  - Admin can see a list of all appointments filtered by date, doctor, or status.
-  - Admin can see appointment details (patient, doctor, time, status).
+  - Logout button is accessible from the admin dashboard.
+  - Logging out invalidates the current session/token.
+  - User is redirected to the login page after logout.
+- Priority: High
 
-**3. Manage User Roles and Access**
-As an admin, I want to control which users have access to admin, doctor, or patient features, so that sensitive functionality is restricted to authorized roles only.
+**3. Add Doctors to the Portal**
+As an admin, I want to add doctors to the portal, so that they can be booked by patients.
 - Acceptance Criteria:
-  - Each user account is assigned exactly one role (admin, doctor, or patient).
-  - Role-based access is enforced on both frontend routes and backend REST endpoints.
+  - Admin can enter doctor name, specialization, and contact details.
+  - New doctor appears in the patient-facing doctor list immediately.
+- Priority: High
 
-**4. Log In Securely**
-As an admin, I want to log in with a secure username and password, so that only authorized personnel can access administrative functions.
+**4. Delete Doctor's Profile**
+As an admin, I want to delete a doctor's profile from the portal, so that inactive or incorrect doctor records are removed.
 - Acceptance Criteria:
-  - Login requires valid credentials.
-  - Invalid login attempts return an appropriate error without revealing whether the username or password was incorrect.
+  - Admin can select and delete a doctor profile.
+  - Deleted doctor no longer appears in patient booking screens.
+  - Existing historical appointments tied to that doctor remain intact for records.
+- Priority: Medium
 
-**5. Generate System Reports**
-As an admin, I want to run reports on clinic activity (e.g., appointments per doctor, cancellations), so that I can track clinic performance and usage.
+**5. Track Appointment Statistics**
+As an admin, I want to run a stored procedure in MySQL CLI to get the number of appointments per month, so that I can track usage statistics.
 - Acceptance Criteria:
-  - Admin can trigger a stored procedure/report from the dashboard.
-  - Report results are displayed in a readable format (table view).
+  - Stored procedure returns appointment count grouped by month.
+  - Procedure can be executed directly via MySQL CLI.
+- Priority: Low
 
 ---
 
 ## 🧑‍⚕️ Patient User Stories
 
-**1. Register an Account**
-As a patient, I want to create an account with my personal details, so that I can book and manage my own appointments.
+**1. View Doctors Without Logging In**
+As a patient, I want to view a list of doctors without logging in, so that I can explore options before registering.
 - Acceptance Criteria:
-  - Registration requires name, email, and password.
-  - Duplicate emails are rejected with a clear error message.
+  - Doctor list page is publicly accessible (no auth required).
+  - List shows doctor name and specialization.
+- Priority: Medium
 
-**2. Book an Appointment**
-As a patient, I want to view available doctors and book an appointment at an available time slot, so that I can schedule a visit without calling the clinic.
+**2. Sign Up**
+As a patient, I want to sign up using my email and password, so that I can book appointments.
 - Acceptance Criteria:
-  - Patient can browse doctors by specialization.
-  - Only available time slots are shown for booking.
-  - Booking is confirmed instantly and reflected in the patient's appointment list.
+  - Sign-up requires a valid email and password.
+  - Duplicate email registration is rejected with a clear error.
+- Priority: High
 
-**3. View Appointment History**
-As a patient, I want to view my past and upcoming appointments, so that I can keep track of my visits and plan ahead.
+**3. Log Into the Portal**
+As a patient, I want to log into the portal, so that I can manage my bookings.
 - Acceptance Criteria:
-  - Patient dashboard lists appointments sorted by date.
-  - Each entry shows doctor name, date/time, and status (upcoming/completed/cancelled).
+  - Patient can log in with valid credentials.
+  - Successful login redirects to the patient dashboard.
+- Priority: High
 
-**4. Cancel or Reschedule an Appointment**
-As a patient, I want to cancel or reschedule an upcoming appointment, so that I can adjust my schedule when my plans change.
+**4. Log Out of the Portal**
+As a patient, I want to log out of the portal, so that I can secure my account.
 - Acceptance Criteria:
-  - Patient can cancel an appointment before a defined cutoff time.
-  - Rescheduling shows only new available slots for the same doctor.
+  - Logout invalidates the current session/token.
+  - User is redirected to the login/home page.
+- Priority: High
 
-**5. View Prescriptions**
-As a patient, I want to view prescriptions issued to me by doctors, so that I have easy access to my medication history.
+**5. Book an Appointment**
+As a patient, I want to log in and book an hour-long appointment, so that I can consult with a doctor.
 - Acceptance Criteria:
-  - Patient can see a list of prescriptions linked to their past appointments.
-  - Each prescription shows medication name, dosage, and notes.
+  - Patient can select a doctor and an available one-hour time slot.
+  - Booking is confirmed and reflected immediately in the patient's appointment list.
+- Priority: High
+
+**6. View Upcoming Appointments**
+As a patient, I want to view my upcoming appointments, so that I can prepare accordingly.
+- Acceptance Criteria:
+  - Dashboard lists upcoming appointments sorted by date/time.
+  - Each entry shows doctor name and appointment time.
+- Priority: Medium
 
 ---
 
 ## 🩺 Doctor User Stories
 
-**1. Log In and View Dashboard**
-As a doctor, I want to log in and see my dashboard, so that I can quickly check my schedule for the day.
+**1. Log Into the Portal**
+As a doctor, I want to log into the portal, so that I can manage my appointments.
 - Acceptance Criteria:
-  - Doctor login is role-restricted (cannot access admin functionality).
-  - Dashboard shows today's appointments by default.
+  - Doctor can log in with valid credentials.
+  - Successful login redirects to the doctor dashboard.
+- Priority: High
 
-**2. Set Availability**
-As a doctor, I want to set and update my available time slots, so that patients can only book appointments when I'm actually free.
+**2. Log Out of the Portal**
+As a doctor, I want to log out of the portal, so that I can protect my data.
 - Acceptance Criteria:
-  - Doctor can mark specific days/times as available or unavailable.
-  - Changes to availability are immediately reflected in the patient booking view.
+  - Logout invalidates the current session/token.
+  - User is redirected to the login page.
+- Priority: High
 
-**3. View Patient Appointments**
-As a doctor, I want to view a list of my upcoming appointments with patient details, so that I can prepare for each visit.
+**3. View Appointment Calendar**
+As a doctor, I want to view my appointment calendar, so that I can stay organized.
 - Acceptance Criteria:
-  - Doctor can see patient name, appointment time, and reason for visit (if provided).
-  - List can be filtered by date range.
+  - Calendar displays all upcoming appointments by date.
+  - Doctor can filter by day/week/month view.
+- Priority: Medium
 
-**4. Add Prescriptions**
-As a doctor, I want to add a prescription after an appointment, so that the patient has a record of prescribed medication.
+**4. Mark Unavailability**
+As a doctor, I want to mark my unavailability, so that patients only see available slots.
 - Acceptance Criteria:
-  - Doctor can attach a prescription (medication, dosage, notes) to a completed appointment.
-  - Prescription is saved to MongoDB and becomes visible to the patient.
+  - Doctor can block off specific dates/times as unavailable.
+  - Blocked slots are hidden from the patient booking view immediately.
+- Priority: High
 
-**5. Update Appointment Status**
-As a doctor, I want to mark an appointment as completed or cancelled, so that records stay accurate and up to date.
+**5. Update Profile**
+As a doctor, I want to update my profile with specialization and contact information, so that patients have up-to-date information.
 - Acceptance Criteria:
-  - Doctor can change appointment status after the visit.
-  - Status change is reflected in both doctor's and patient's appointment views.
+  - Doctor can edit specialization, phone number, and other profile fields.
+  - Updated info reflects immediately in the patient-facing doctor list.
+- Priority: Medium
+
+**6. View Patient Details**
+As a doctor, I want to view patient details for upcoming appointments, so that I can be prepared.
+- Acceptance Criteria:
+  - Doctor can click an appointment to see patient name and reason for visit.
+  - Sensitive patient info is only visible to the doctor assigned to that appointment.
+- Priority: Medium
