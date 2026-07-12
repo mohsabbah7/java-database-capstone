@@ -1,6 +1,6 @@
 # 🗄️ Smart Clinic Management System – Schema Design
 
-## 📐 Section 1: MySQL Database Design
+## MySQL Database Design
 
 The MySQL database stores structured, relational data where integrity between entities matters most — patients, doctors, admins, appointments, and doctor availability. Using foreign keys here ensures an appointment can never reference a patient or doctor that doesn't exist, and that data stays consistent across the system.
 
@@ -84,7 +84,7 @@ The MySQL database stores structured, relational data where integrity between en
 
 ---
 
-## 🍃 Section 2: MongoDB Collection Design
+## MongoDB Collection Design
 
 ### Collection: `prescriptions`
 
